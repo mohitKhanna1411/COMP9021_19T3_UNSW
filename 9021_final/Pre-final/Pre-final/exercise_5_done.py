@@ -1,0 +1,58 @@
+# You might find the ord() function useful.
+
+def longest_leftmost_sequence_of_consecutive_letters(word):
+    '''
+    You can assume that "word" is a string of
+    nothing but lowercase letters.
+    
+    >>> longest_leftmost_sequence_of_consecutive_letters('')
+    ''
+    >>> longest_leftmost_sequence_of_consecutive_letters('a')
+    'a'
+    >>> longest_leftmost_sequence_of_consecutive_letters('zuba')
+    'z'
+    >>> longest_leftmost_sequence_of_consecutive_letters('ab')
+    'ab'
+    >>> longest_leftmost_sequence_of_consecutive_letters('bcab')
+    'bc'
+    >>> longest_leftmost_sequence_of_consecutive_letters('aabbccddee')
+    'ab'
+    >>> longest_leftmost_sequence_of_consecutive_letters('aefbxyzcrsdt')
+    'xyz'
+    >>> longest_leftmost_sequence_of_consecutive_letters('efghuvwijlrstuvabcde')
+    'rstuv'
+    '''
+    x=[]
+    if len(word)==1:
+        return word
+    if len(word)>1:
+        l=word[0];
+        for i in range(1,len(word)):
+            a=word[i-1]
+            b=word[i]
+            if ord(a)==ord(b)-1:
+                l=l+b
+                if i == len(word)-1:
+                    x.append(l)
+            else:
+                x.append(l)
+                l=b
+    le=0
+    if x:
+        
+        for i in x:
+            if len(i)>le:
+                le=len(i)
+                r=i
+        return r
+    else:
+        return ''
+            
+        
+        
+    # REPLACE THE PREVIOUS LINE WITH YOUR CODE                
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
